@@ -1,0 +1,6 @@
+.form {
+	width: 700px;
+	background: rgba(251, 187, 17, 0.1); /* Very subtle golden wash */
+	backdrop-filter: blur(10px);
+	background-size: 40px 60px;
+}
