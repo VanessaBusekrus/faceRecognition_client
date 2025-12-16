@@ -369,13 +369,6 @@ const App = () => {
           isLoading={isLoading}
           input={inputURL}
         />
-        {/* Intentionally vulnerable XSS render for demonstration */}
-        {message && (
-          <div
-            className={`f6 mv3 ${messageColor}`}
-            dangerouslySetInnerHTML={{ __html: message }}
-          />
-        )}
         <FaceRecognition
           boxes={boxes}
           image={image}

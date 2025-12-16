@@ -97,6 +97,11 @@ const Register = ({ handleRouteChange, handleSignIn }) => {
 								required
 							/>
 						</div>
+						{/* New to check for vulnerability: */}
+						<p>Preview:</p>
+						<div
+							dangerouslySetInnerHTML={{ __html: name }}
+						/>
 						<div className="mt3">
 							<label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
 							<input 
