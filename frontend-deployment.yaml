@@ -13,7 +13,9 @@ spec:
         app: frontend
     spec:
       containers:
-      - name: frontend
+      - securityContext:
+          allowPrivilegeEscalation: false
+        name: frontend
         image: vanessabkrs/facerecognition-frontend:latest
         ports:
         - containerPort: 80
