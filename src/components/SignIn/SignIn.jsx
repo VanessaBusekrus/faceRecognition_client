@@ -44,7 +44,7 @@ const SignIn = ({ handleRouteChange, handleSignIn, handleTwoFactorRequired }) =>
         // Sign in failed - show generic error message (don't reveal if user exists)
         console.error('Sign in failed:', data);
         alert('Invalid email or password. Please try again.');
-        console.log(("User entered password:", password)); // VULNERABILITY #2: A02:2021 - Cryptographic Failures - Logging sensitive information
+        console.log("User entered password:", password); // VULNERABILITY #2: A02:2021 - Cryptographic Failures - Logging sensitive information
       }
       } catch (err) {
         // Handles network or other unexpected errors that prevent the fetch from completing
