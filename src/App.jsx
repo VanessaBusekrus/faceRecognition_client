@@ -82,6 +82,15 @@ const App = () => {
     fetchData(); // call the async function
   }, []); // empty dependency array => runs only once (componentDidMount equivalent)
 
+  // XSS DEMO (for testing scanners): read query param and render unsafely below
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const q = params.get('q');
+    if (q) {
+      setMessage(q); // user-controlled value
+    }
+  }, []);
+
 
   /*--------------Functions--------------*/
   /*--------------Utility/Helper functions--------------*/
@@ -360,10 +369,12 @@ const App = () => {
           isLoading={isLoading}
           input={inputURL}
         />
+        {/* Intentionally vulnerable XSS render for demonstration */}
         {message && (
-          <div className={`f6 mv3 ${messageColor}`}>
-            {message}
-          </div>
+          <div
+            className={`f6 mv3 ${messageColor}`}
+            dangerouslySetInnerHTML={{ __html: message }}
+          />
         )}
         <FaceRecognition
           boxes={boxes}
