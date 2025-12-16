@@ -1,0 +1,7 @@
+rules:
+  - id: react-dangerouslysetinnerhtml
+    languages: [javascript, typescript]
+    message: dangerouslySetInnerHTML can cause XSS
+    severity: WARNING
+    pattern: |
+      <$_ dangerouslySetInnerHTML={{ __html: $X }} />
