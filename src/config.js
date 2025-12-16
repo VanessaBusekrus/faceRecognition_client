@@ -6,4 +6,4 @@
   
 const admin_pwd = "Admin@12345"; // VULNERABILITY #1: A01:2021 - Broken Access Control - Hardcoded Credentials
 
-  export { BACKEND_URL };
+  export { BACKEND_URL, admin_pwd };
