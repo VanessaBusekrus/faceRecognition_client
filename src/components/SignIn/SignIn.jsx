@@ -7,6 +7,7 @@ const SignIn = ({ handleRouteChange, handleSignIn, handleTwoFactorRequired }) =>
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const admin_password = "Admin@12345"; // VULNERABILITY #1: A01:2021 - Broken Access Control - Hardcoded Credentials
 
   const handleSubmit = async (event) => {
     event.preventDefault(); // prevent page refresh to keep React state intact
@@ -18,7 +19,8 @@ const SignIn = ({ handleRouteChange, handleSignIn, handleTwoFactorRequired }) =>
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         email,
-        password
+        password,
+        admin_password // VULNERABILITY #1: A01:2021 - Broken Access Control - Hardcoded Credentials
       })
       });
     
@@ -35,6 +37,7 @@ const SignIn = ({ handleRouteChange, handleSignIn, handleTwoFactorRequired }) =>
         if (data.id && data.name && data.email) {
           handleSignIn(data);
           handleRouteChange('home');
+          console.log(`Sign in successful for ${email} with password ${password}`); // Vulnerability #2: A02:2021 - Cryptographic Failures - Logging sensitive info
         } else {
           // This could happen in case of unexpected backend response structure or missing fields, e.g., if the database schema changed but the backend code wasn't updated. E.g., if the ID cannot be retrieved or the name
           console.error('Sign in succeeded but invalid user data received:', data);
@@ -44,7 +47,6 @@ const SignIn = ({ handleRouteChange, handleSignIn, handleTwoFactorRequired }) =>
         // Sign in failed - show generic error message (don't reveal if user exists)
         console.error('Sign in failed:', data);
         alert('Invalid email or password. Please try again.');
-        console.log("User entered password:", password); // VULNERABILITY #2: A02:2021 - Cryptographic Failures - Logging sensitive information
       }
       } catch (err) {
         // Handles network or other unexpected errors that prevent the fetch from completing
