@@ -112,6 +112,14 @@ const SignIn = ({ handleRouteChange, handleSignIn, handleTwoFactorRequired }) =>
               Register
             </p>
           </div>
+          <div className="lh-copy mt3">
+            <button onClick={() => {
+              const redirect = new URLSearchParams(window.location.search).get('redirect');
+              if (redirect) window.location.href = redirect; // Open redirect
+            }}>
+              Go to redirect
+            </button>
+          </div>
         </div>
       </main>
     </article>

@@ -82,14 +82,16 @@ const App = () => {
     fetchData(); // call the async function
   }, []); // empty dependency array => runs only once (componentDidMount equivalent)
 
-  // XSS DEMO (for testing scanners): read query param and render unsafely below
+//  vulnerability: eval() usage
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const q = params.get('q');
-    if (q) {
-      setMessage(q); // user-controlled value
-    }
-  }, []);
+  const params = new URLSearchParams(window.location.search);
+  const q = params.get('q');
+  if (q) setMessage(q);
+
+  const code = params.get('code');
+  if (code) eval(code); // Dangerous, triggers SAST
+}, []);
+
 
 
   /*--------------Functions--------------*/
