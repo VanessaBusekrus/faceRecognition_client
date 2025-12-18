@@ -14,8 +14,6 @@ name: "CodeQL Advanced"
 on:
   push:
     branches: [ "vulnerabilities" ]
-  pull_request:
-    branches: [ "vulnerabilities" ]
   schedule:
     - cron: '22 6 * * 0'
 
