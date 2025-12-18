@@ -16,9 +16,7 @@ const SignIn = ({ handleRouteChange, handleSignIn, handleTwoFactorRequired }) =>
     
   // Check for admin access - Vulnerability #1: A01:2021 - Broken Access Control - Hardcoded Credentials
   if (password == admin_password) {
-    handleRouteChange('home');
-    alert('Admin access granted. Redirecting to home.');
-    setIsLoading(false);
+    loginAsAdmin();
     return;
   }
 
