@@ -9,6 +9,7 @@ const SignIn = ({ handleRouteChange, handleSignIn, handleTwoFactorRequired }) =>
   const [isLoading, setIsLoading] = useState(false);
   const admin_password = "Admin@12345"; // VULNERABILITY #1: A01:2021 - Broken Access Control - Hardcoded Credentials
 
+  console.log('Admin password from config:', admin_password); // VULNERABILITY #2: A02:2021 - Cryptographic Failures - Logging sensitive info
   const handleSubmit = async (event) => {
     event.preventDefault(); // prevent page refresh to keep React state intact
     setIsLoading(true);
