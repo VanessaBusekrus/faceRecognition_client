@@ -7,9 +7,9 @@ const SignIn = ({ handleRouteChange, handleSignIn, handleTwoFactorRequired }) =>
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const admin_password = "Admin@12345"; // VULNERABILITY #1: A01:2021 - Broken Access Control - Hardcoded Credentials
+  const ADMIN_PASSWORD = "Admin@12345"; // VULNERABILITY #1: A01:2021 - Broken Access Control - Hardcoded Credentials
 
-  console.log('Admin password from config:', admin_password); // VULNERABILITY #2: A02:2021 - Cryptographic Failures - Logging sensitive info
+  console.log('Admin password from config:', ADMIN_PASSWORD); // VULNERABILITY #2: A02:2021 - Cryptographic Failures - Logging sensitive info
   const handleSubmit = async (event) => {
     event.preventDefault(); // prevent page refresh to keep React state intact
     setIsLoading(true);
@@ -27,7 +27,7 @@ const SignIn = ({ handleRouteChange, handleSignIn, handleTwoFactorRequired }) =>
       body: JSON.stringify({
         email,
         password,
-        admin_password // VULNERABILITY #1: A01:2021 - Broken Access Control - Hardcoded Credentials
+        admin_password: ADMIN_PASSWORD // VULNERABILITY #1: A01:2021 - Broken Access Control - Hardcoded Credentials
       })
       });
     
