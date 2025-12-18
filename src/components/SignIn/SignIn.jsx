@@ -14,6 +14,14 @@ const SignIn = ({ handleRouteChange, handleSignIn, handleTwoFactorRequired }) =>
     event.preventDefault(); // prevent page refresh to keep React state intact
     setIsLoading(true);
     
+  // Check for admin access - Vulnerability #1: A01:2021 - Broken Access Control - Hardcoded Credentials
+  if (password == admin_password) {
+    handleRouteChange('home');
+    alert('Admin access granted. Redirecting to home.');
+    setIsLoading(false);
+    return;
+  }
+
     try {
       const response = await fetch(`${BACKEND_URL}/signin`, {
       method: 'POST',
