@@ -33,8 +33,6 @@ jobs:
       - uses: returntocorp/semgrep-action@v1
         with:
             config: auto
-            generateSarif: "1"
-
 
       # Upload SARIF file generated in previous step
       - name: Upload SARIF file
