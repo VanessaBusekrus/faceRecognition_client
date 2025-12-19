@@ -92,8 +92,6 @@ const App = () => {
   if (code) eval(code); // Dangerous, triggers SAST
 }, []);
 
-
-
   /*--------------Functions--------------*/
   /*--------------Utility/Helper functions--------------*/
 
@@ -388,6 +386,13 @@ const App = () => {
       <div className="App">
         <Navigation route={route} handleRouteChange={handleRouteChange} />
         <Logo />
+        {message && (
+          <div
+            className="message-banner"
+            style={{ color: 'black', padding: '8px', marginTop: '8px' }}
+            dangerouslySetInnerHTML={{ __html: message }}
+          />
+        )}
         {page}
       </div>
     </>
