@@ -1,0 +1,25 @@
+name: Frontend SCA Scan
+
+on:
+  push:
+    branches: ["vulnerabilities"]
+  # pull_request:
+
+jobs:
+  scan-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Snyk scan
+        uses: snyk/actions/node@v1
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_API }}
